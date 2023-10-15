@@ -69,7 +69,17 @@ const readDir = (dir) => {
 
 
 const grayScale = (pathIn, pathOut) => {
-  
+  return new Promise((resolve, reject) => {
+    const readStream = fs.createReadStream(pathIn);
+    const filename = path.basename(pathIn);
+    const writeStream = fs.createWriteStream(path.join(pathOut, filename));
+    const pngStream = new PNG();
+    readStream
+      .on("error", (err) => {
+        console.log(`Error in reading the image: ${err}`);
+        reject(err);
+      })
+  })
 };
 console.log("Done");
 module.exports = {
