@@ -110,7 +110,7 @@ const grayScale = (pathIn, pathOut) => {
               console.error(`Error in image processing: ${err}`);
               reject(err);
             })
-            on("finish", () => {
+            .on("finish", () => {
               console.log("Image processing done.");
               resolve();
             });
