@@ -41,7 +41,21 @@ const unzip = (pathIn, pathOut) => {
  * @return {promise}
  */
 const readDir = (dir) => {
-  
+  return new Promise((resolve, reject) => {
+    fs.readdir(dir, (err, files) => {
+      if (err) {
+        reject(err);
+      } else {
+        const extensionName = ".png";
+        const arrWithPng = files.filter(
+          (item) => path.extname(item) === extensionName
+        );
+        const arrWithPngPath = arrWithPng.map((item) => path.join(dir, item));
+        // console.log(arrWithPngPath);
+        resolve(arrWithPngPath);
+      }
+    });
+  });
 };
 
 /**
