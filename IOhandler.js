@@ -67,7 +67,6 @@ const readDir = (dir) => {
  * @return {promise}
  */
 
-
 const grayScale = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     const readStream = fs.createReadStream(pathIn);
@@ -84,7 +83,9 @@ const grayScale = (pathIn, pathOut) => {
         console.error(`Error in image processing: ${err}`);
         reject(err);
       })
-  })
+      .on("parsed", function() {
+        const modifiedImage = handleGrayscale.call(this, pngStream)})
+  });
 };
 console.log("Done");
 module.exports = {
