@@ -79,6 +79,7 @@ const grayScale = (pathIn, pathOut) => {
         console.log(`Error in reading the image: ${err}`);
         reject(err);
       })
+      .pipe(pngStream)
   })
 };
 console.log("Done");
