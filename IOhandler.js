@@ -107,7 +107,7 @@ const grayScale = (pathIn, pathOut) => {
             .pack()
             .pipe(writeStream)
             .on("error", (err) => {
-              console.error(`Error in image processing: ${err}`);
+              console.error(`Error in sending image: ${err}`);
               reject(err);
             })
             .on("finish", () => {
@@ -115,13 +115,12 @@ const grayScale = (pathIn, pathOut) => {
               resolve();
             });
         } else {
-          console.error("Modified image is undefined.");
           reject("Modified image is undefined.");
         }
       }); 
   });
 };
-console.log("Done");
+
 module.exports = {
   unzip,
   readDir,
