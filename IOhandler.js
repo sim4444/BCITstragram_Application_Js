@@ -109,7 +109,16 @@ const grayScale = (pathIn, pathOut) => {
             .on("error", (err) => {
               console.error(`Error in image processing: ${err}`);
               reject(err);
-            })}
+            })
+            on("finish", () => {
+              console.log("Image processing done.");
+              resolve();
+            });
+        } else {
+          console.error("Modified image is undefined.");
+          reject("Modified image is undefined.");
+        }
+      }); 
   });
 };
 console.log("Done");
