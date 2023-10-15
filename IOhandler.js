@@ -67,6 +67,23 @@ const readDir = (dir) => {
  * @return {promise}
  */
 
+function handleGrayscale(img) {
+  for (var y = 0; y < this.height; y++) {
+    for (var x = 0; x < this.width; x++) {
+      var idx = (this.width * y + x) << 2;
+
+      // invert color
+      this.data[idx] = 255 - this.data[idx];
+      this.data[idx + 1] = 255 - this.data[idx + 1];
+      this.data[idx + 2] = 255 - this.data[idx + 2];
+
+      // and reduce opacity
+      this.data[idx + 3] = this.data[idx + 3] >> 1;
+    }
+  }
+  return img;
+}
+
 const grayScale = (pathIn, pathOut) => {
   return new Promise((resolve, reject) => {
     const readStream = fs.createReadStream(pathIn);
