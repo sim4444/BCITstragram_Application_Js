@@ -8,8 +8,7 @@
  *
  */
 
-const { rejects } = require("assert"),
-  AdmZip = require("adm-zip");
+const AdmZip = require("adm-zip"),
   fs = require("fs"),
   PNG = require("pngjs").PNG,
   path = require("path");
@@ -22,7 +21,18 @@ const { rejects } = require("assert"),
  * @return {promise}
  */
 const unzip = (pathIn, pathOut) => {
-  
+  return new Promise((resolve, reject) => {
+    fs.readFile(pathIn, (err, zipped_data) => {
+      if (err) {
+        reject(err);
+      } else {
+        const zip = new AdmZip(zipped_data);
+        unzipped_data = zip.extractAllTo(pathOut, true);
+        // console.log(unzipped_data)
+        resolve(unzipped_data);
+      }
+    });
+  });
 };
 /**
  * Description: read all the png files from given directory and return Promise containing array of each png file path
