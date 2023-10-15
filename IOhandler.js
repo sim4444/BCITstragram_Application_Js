@@ -80,6 +80,10 @@ const grayScale = (pathIn, pathOut) => {
         reject(err);
       })
       .pipe(pngStream)
+      .on("error", (err) => {
+        console.error(`Error in image processing: ${err}`);
+        reject(err);
+      })
   })
 };
 console.log("Done");
