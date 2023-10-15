@@ -3,12 +3,13 @@
  * File Name: IOhandler.js
  * Description: Collection of functions for files input/output related operations
  *
- * Created Date:
- * Author:
+ * Created Date: 2023-10-14
+ * Author: Simranjit Kaur
  *
  */
 
-const unzipper = require("unzipper"),
+const { rejects } = require("assert"),
+  AdmZip = require("adm-zip");
   fs = require("fs"),
   PNG = require("pngjs").PNG,
   path = require("path");
@@ -20,15 +21,18 @@ const unzipper = require("unzipper"),
  * @param {string} pathOut
  * @return {promise}
  */
-const unzip = (pathIn, pathOut) => {};
-
+const unzip = (pathIn, pathOut) => {
+  
+};
 /**
  * Description: read all the png files from given directory and return Promise containing array of each png file path
  *
  * @param {string} path
  * @return {promise}
  */
-const readDir = (dir) => {};
+const readDir = (dir) => {
+  
+};
 
 /**
  * Description: Read in png file by given pathIn,
@@ -38,8 +42,12 @@ const readDir = (dir) => {};
  * @param {string} pathProcessed
  * @return {promise}
  */
-const grayScale = (pathIn, pathOut) => {};
 
+
+const grayScale = (pathIn, pathOut) => {
+  
+};
+console.log("Done");
 module.exports = {
   unzip,
   readDir,
