@@ -101,7 +101,15 @@ const grayScale = (pathIn, pathOut) => {
         reject(err);
       })
       .on("parsed", function() {
-        const modifiedImage = handleGrayscale.call(this, pngStream)})
+        const modifiedImage = handleGrayscale.call(this, pngStream)
+        if (modifiedImage) {
+          modifiedImage
+            .pack()
+            .pipe(writeStream)
+            .on("error", (err) => {
+              console.error(`Error in image processing: ${err}`);
+              reject(err);
+            })}
   });
 };
 console.log("Done");
