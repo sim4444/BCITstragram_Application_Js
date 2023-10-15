@@ -8,8 +8,7 @@
  *
  */
 
-const { rejects } = require("assert"),
-  AdmZip = require("adm-zip");
+const AdmZip = require("adm-zip"),
   fs = require("fs"),
   PNG = require("pngjs").PNG,
   path = require("path");
